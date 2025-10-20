@@ -1,0 +1,23 @@
+# Demo Dockerfile for CI/CD Pipeline
+FROM alpine:latest
+
+LABEL maintainer="Kaiburr Task Management"
+LABEL description="Demo Docker image for CI/CD pipeline"
+
+# Install basic tools
+RUN apk add --no-cache curl bash
+
+# Create a simple demo application
+RUN echo '#!/bin/bash' > /app/demo.sh && \
+    echo 'echo "🚀 Kaiburr Task Management System"' >> /app/demo.sh && \
+    echo 'echo "================================="' >> /app/demo.sh && \
+    echo 'echo "✅ CI/CD Pipeline Demo"' >> /app/demo.sh && \
+    echo 'echo "✅ Docker Build Successful"' >> /app/demo.sh && \
+    echo 'echo "✅ Ready for Deployment"' >> /app/demo.sh && \
+    chmod +x /app/demo.sh
+
+WORKDIR /app
+
+EXPOSE 8080
+
+CMD ["/app/demo.sh"]
